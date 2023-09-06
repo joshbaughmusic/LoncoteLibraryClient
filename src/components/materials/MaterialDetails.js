@@ -8,9 +8,14 @@ export default function MaterialDetails() {
 
   const [material, setMaterial] = useState(null);
 
+  const getUniqueMaterial = async () => {
+    const fetchedMaterial = await getMaterial(id)
+    setMaterial(fetchedMaterial)
+  }
+
   //add useEffect here to get the ticket details from the API
   useEffect(() => {
-    getMaterial(id).then(setMaterial);
+    getUniqueMaterial();
   }, []);
 
   if (!material) {
@@ -24,11 +29,11 @@ export default function MaterialDetails() {
         <tbody>
           <tr>
             <th scope="row">Type</th>
-            <td>{material.materialType.name}</td>
+            <td>{material.materialType?.name}</td>
           </tr>
           <tr>
             <th scope="row">Genre</th>
-            <td>{material.genre.name}</td>
+            <td>{material.genre?.name}</td>
           </tr>
           <tr>
             <th scope="row">Out Of Circulation?</th>
