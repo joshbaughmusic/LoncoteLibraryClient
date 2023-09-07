@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import { getPatrons } from '../../data/patronsData.js';
-import { Table } from 'reactstrap';
+import { deactivatePatron, getPatrons } from '../../data/patronsData.js';
+import { Button, Table } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 export const PatronsList = () => {
@@ -9,6 +9,11 @@ export const PatronsList = () => {
   const getAllPatrons = () => {
     getPatrons().then(setAllPatrons);
   };
+
+  const handleDeactivate = e => {
+    deactivatePatron(e.target.value)
+    getAllPatrons();
+  }
 
   useEffect(() => {
     getAllPatrons();
@@ -30,7 +35,7 @@ export const PatronsList = () => {
             </tr>
           </thead>
           <tbody>
-            {allPatrons.map((p) => (
+            {allPatrons.sort((a,b) => a.id - b.id).map((p) => (
               <tr key={`patrons-${p.id}`}>
                 <th scope="row">{p.id}</th>
                 <td>
@@ -39,6 +44,11 @@ export const PatronsList = () => {
                 {p.isActive ? (
                   <td>
                     <p>&#x2705;</p>
+                    <Button
+                    color='danger'
+                    value={p.id}
+                    onClick={handleDeactivate}
+                    >Deactivate</Button>
                   </td>
                 ) : (
                   <td>
