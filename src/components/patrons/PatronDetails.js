@@ -42,8 +42,12 @@ export const PatronDetails = () => {
             </tr>
           </tbody>
         </Table>
-        <PatronEdit patron={patron} />
-        <br /><br />
+        <PatronEdit
+          patron={patron}
+          getPatron={getPatron}
+        />
+        <br />
+        <br />
         <h5>Checkouts:</h5>
         {patron.checkouts?.length ? (
           <Table>
