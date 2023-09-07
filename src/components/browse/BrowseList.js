@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
-import { Button, Table } from 'reactstrap';
-import { removeMaterial } from '../../data/materialsData';
+import {
+  Button,
+  Table,
+} from 'reactstrap';
 import { Link } from 'react-router-dom';
 import { getAvailableMaterials } from '../../data/browseData.js';
+import { NewCheckout } from './NewCheckout.js';
 
 export default function BrowseList() {
   const [availableMaterials, setAvailableMaterials] = useState([]);
@@ -14,7 +17,6 @@ export default function BrowseList() {
   useEffect(() => {
     fetchAvailableMaterials();
   }, []);
-
 
   return (
     <div className="container">
@@ -41,7 +43,12 @@ export default function BrowseList() {
               <td>
                 <Link to={`/materials/${m.id}`}>Details</Link>
               </td>
-             
+              <td>
+                <NewCheckout
+                  materialId={m.id}
+                  fetchAvailableMaterials={fetchAvailableMaterials}
+                />
+              </td>
             </tr>
           ))}
         </tbody>
