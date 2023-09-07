@@ -11,6 +11,7 @@ import { PatronsList } from './components/patrons/PatronsList.js';
 import { PatronDetails } from './components/patrons/PatronDetails.js';
 import { CheckoutList } from './components/checkouts/CheckoutList.js';
 import BrowseList from './components/browse/BrowseList.js';
+import { OverdueCheckoutList } from './components/checkouts/OverdueCheckoutList.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -48,6 +49,12 @@ root.render(
           <Route
             index
             element={<CheckoutList />}
+          />
+        </Route>
+        <Route path="overdueCheckouts">
+          <Route
+            index
+            element={<OverdueCheckoutList />}
           />
         </Route>
         <Route path="browse">
