@@ -6,7 +6,7 @@ export const getMaterials = () => {
 
 //export a function here that gets a ticket by id
 export const getMaterial = async (id) => {
-  const res = await fetch(`${_apiUrl}/${id}`)
+  const res = await fetch(`${_apiUrl}/${id}`);
   const data = await res.json();
   return data;
 };
@@ -17,4 +17,11 @@ export const createMaterial = (material) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(material),
   }).then((res) => res.json());
+};
+
+export const removeMaterial = (id) => {
+  return fetch(`${_apiUrl}/${id}`, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+  });
 };

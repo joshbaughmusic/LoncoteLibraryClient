@@ -1,14 +1,23 @@
-import { useEffect, useState } from "react";
-import { Table } from "reactstrap";
-import { getMaterials } from "../../data/materialsData";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { Button, Table } from 'reactstrap';
+import { getMaterials, removeMaterial } from '../../data/materialsData';
+import { Link } from 'react-router-dom';
 
 export default function MaterialList() {
   const [materials, setMaterials] = useState([]);
 
-  useEffect(() => {
+  const fetchMaterials = () => {
     getMaterials().then(setMaterials);
+  };
+
+  useEffect(() => {
+    fetchMaterials();
   }, []);
+
+  const handleRemoveClick = (e) => {
+    removeMaterial(e.target.value);
+    fetchMaterials();
+  };
 
   return (
     <div className="container">
@@ -24,6 +33,7 @@ export default function MaterialList() {
             <th>Type</th>
             <th>Genre</th>
             <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -35,6 +45,15 @@ export default function MaterialList() {
               <td>{m.genre.name}</td>
               <td>
                 <Link to={`${m.id}`}>Details</Link>
+              </td>
+              <td>
+                <Button
+                  color="danger"
+                  value={m.id}
+                  onClick={handleRemoveClick}
+                >
+                  Remove
+                </Button>
               </td>
             </tr>
           ))}
