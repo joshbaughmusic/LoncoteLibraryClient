@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Table } from 'reactstrap';
 import { getUniquePatron } from '../../data/patronsData.js';
+import { PatronEdit } from './PatronEdit.js';
 
 export const PatronDetails = () => {
   const [patron, setPatron] = useState({});
@@ -41,6 +42,12 @@ export const PatronDetails = () => {
             </tr>
           </tbody>
         </Table>
+        <PatronEdit
+          patron={patron}
+          getPatron={getPatron}
+        />
+        <br />
+        <br />
         <h5>Checkouts:</h5>
         {patron.checkouts?.length ? (
           <Table>
