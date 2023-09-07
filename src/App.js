@@ -5,7 +5,10 @@ import { Outlet } from "react-router-dom";
 function App() {
   return (
     <>
-      <Navbar color="info" expand="md">
+      <Navbar
+        color="info"
+        expand="md"
+      >
         <Nav navbar>
           <NavbarBrand href="/">📖 Loncotes County Library</NavbarBrand>
           <NavItem>
@@ -13,6 +16,9 @@ function App() {
           </NavItem>
           <NavItem>
             <NavLink href="/patrons">Patrons</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/checkouts">Checkouts</NavLink>
           </NavItem>
         </Nav>
       </Navbar>
